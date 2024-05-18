@@ -4,6 +4,7 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
+	"time"
 
 	log "github.com/sirupsen/logrus"
 	"github.com/xans-me/AegisRPC/server"
@@ -38,4 +39,3 @@ func waitForShutdown(grpcServer *grpc.Server) {
 	grpcServer.GracefulStop()
 	log.Info("gRPC server stopped")
 }
-

@@ -2,7 +2,7 @@ package client
 
 import (
 	"context"
-	"fmt"
+
 	"math"
 	"time"
 
@@ -128,11 +128,10 @@ func waitForConnectionReady(conn *grpc.ClientConn, ctx context.Context) bool {
 }
 
 // getExponentialBackoffDuration calculates the backoff duration for retries.
-func getExponentialBackoffDuration(retryCount int, options *ClientOptions) time.Duration {
+func getExponentialBackoffDuration(retryCount int, options *Options) time.Duration {
 	backoffDuration := time.Duration(float64(options.initialBackoff) * math.Pow(options.backoffMultiplier, float64(retryCount)))
 	if backoffDuration > options.maxBackoff {
 		backoffDuration = options.maxBackoff
 	}
 	return backoffDuration
 }
-
